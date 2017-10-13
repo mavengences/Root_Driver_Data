@@ -1,0 +1,3 @@
+Dan: 39 miles @ 47 mph
+Alex: 42 miles @ 34 mph
+Bob: 0 miles 
