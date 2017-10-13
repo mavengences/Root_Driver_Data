@@ -5,6 +5,7 @@ Created on Thu Oct 12 17:39:23 2017
 @author: Dorien Xia
 """
 import os
+from collections import OrderedDict
 
 def driver_parse(driver_string):
     name=driver_string.split(' ')[1].split('\n')[0]
@@ -88,20 +89,57 @@ for k in int_output_dict:
         
 assert len(final_output_dict)>0
 
-fout = open("output.txt", 'w')
+#final_output_list=[]
+#for k in final_output_dict:
+#    string_to_append=k+(final_output_dict[k])
+#    final_output_list.append(string_to_append)
+#print(final_output_list)
+
+list_distance_compare=[]
 for k in final_output_dict:
-    if final_output_dict[k]['Distance']==0:
-        output_string=str(k)+': '+str(final_output_dict[k]['Distance'])+' miles \n'
-    else:
-        output_string=str(k)+': '+str(final_output_dict[k]['Distance'])+' miles @ '+str(final_output_dict[k]['MPH'])+' mph\n'
-    print(output_string)
-    fout.write(output_string)
+    list_distance_compare.append(final_output_dict[k]['Distance'])
+    
+print(list_distance_compare)
 
 output_list=[]
-with open("output.txt") as f:
-    output_list=f.readlines()
+
+try:
+    os.remove("output.txt")
+except OSError:
+    pass
+fout = open("output.txt", 'w')
+#with open("output.txt") as f:
+#    output_list=f.readlines()
+
+output_list=[]
+len_output_list=len(output_list)
+print("final output dict is:" + str(final_output_dict))
+#while len(final_output_dict)>len_output_list:
+print("length final output dict is: " +str(len(final_output_dict)))
+for i in range(len(list_distance_compare)):
+    for k in final_output_dict:
+        if final_output_dict[k]['Distance']==0:
+            output_string=str(k)+': '+str(final_output_dict[k]['Distance'])+' miles \n'
+        else:
+            output_string=str(k)+': '+str(final_output_dict[k]['Distance'])+' miles @ '+str(final_output_dict[k]['MPH'])+' mph\n'
+            #print(output_string)
+        #print(len(list_distance_compare))
+        if final_output_dict[k]['Distance']==max(list_distance_compare):
+            print(final_output_dict[k]['Distance'])
+            fout.write(output_string)
+            list_distance_compare.remove(max(list_distance_compare))
+            with open("output.txt") as f:
+                output_list=f.readlines()
+                len_output_list=len(output_list)
+                break
+            #print(list_distance_compare)
+        elif final_output_dict[k]['Distance']==0 and len(list_distance_compare)==1:
+            fout.write(output_string)
+            break
+                    #print(output_list)
+                #print(list_distance_compare)
+
     
-assert len(final_output_dict)==len(output_list)
         
 print(int_output_dict)
 print('\n')
@@ -117,3 +155,5 @@ assert final_output_dict['Bob']['Distance']==0
 assert final_output_dict['Bob']['MPH']==0
 
 os.startfile("output.txt")
+
+assert len(final_output_dict)==len(output_list)
