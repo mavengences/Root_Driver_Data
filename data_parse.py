@@ -3,7 +3,11 @@
 Created on Thu Oct 12 17:39:23 2017
 
 @author: Dorien Xia
+
+Written in python 3.6
 """
+
+
 import os
 from collections import OrderedDict
 
@@ -33,21 +37,25 @@ def trip_parse(trip_string, output_dict):
         trip_time=round(24-trip_start+trip_end,2)
     else:
         trip_time=trip_time_test
-    #Miles_Per_Hour=float(trip_distance)/trip_time
     output_dict[trip_name]['Distance'].append(trip_distance)
     output_dict[trip_name]['Trip Time'].append(trip_time)
     return output_dict
-
-"""
-Script Functionality Starts Here
-"""
-
+	
 test_output_dict={'Dan': {'Distance': [], 'Trip Time': []}, 'Alex': {'Distance': [], 'Trip Time': []}, 'Bob': {'Distance': [], 'Trip Time': []}, 'Clara': {'Distance': [], 'Trip Time': []}}
 #print(trip_parse("Trip Dan 07:15 07:45 17.3",test_output_dict)["Dan"]["Trip Time"][0])
 #print(trip_parse("Trip Clara 23:01 1:16 42.0",test_output_dict)["Clara"]["Trip Time"][0])
 assert trip_parse("Trip Dan 07:15 07:45 17.3",test_output_dict)["Dan"]["Trip Time"][0]==0.5
 assert trip_parse("Trip Alex 12:01 13:16 42.0",test_output_dict)["Alex"]["Trip Time"][0]==1.25
 assert trip_parse("Trip Clara 23:00 1:15 42.0",test_output_dict)["Clara"]["Trip Time"][0]==2.25
+
+test_string_gen_dict={'Dan': {'Distance': 39, 'MPH': 47}, 'Alex': {'Distance': 42, 'MPH': 34}, 'Bob': {'Distance': 0, 'MPH': 0}}
+
+
+"""
+Script Functionality Starts Here
+"""
+
+
     
 
 input_list=[]
@@ -78,22 +86,14 @@ for k in int_output_dict:
     final_output_dict[k]['MPH']=[]
     if len(int_output_dict[k]['Distance'])!=0:
         final_output_dict[k]['Distance']=int(round(sum(int_output_dict[k]['Distance'])))
-        #final_output_dict[k]['Distance']=sum(int_output_dict[k]['Distance'])
     else:
         final_output_dict[k]['Distance']=0
     if sum(int_output_dict[k]['Trip Time'])!=0:
         final_output_dict[k]['MPH']=int(round(sum(int_output_dict[k]['Distance'])/sum(int_output_dict[k]['Trip Time'])))
-        #final_output_dict[k]['MPH']=sum(int_output_dict[k]['Distance'])/sum(int_output_dict[k]['Trip Time'])
     else:
         final_output_dict[k]['MPH']=0
         
 assert len(final_output_dict)>0
-
-#final_output_list=[]
-#for k in final_output_dict:
-#    string_to_append=k+(final_output_dict[k])
-#    final_output_list.append(string_to_append)
-#print(final_output_list)
 
 list_distance_compare=[]
 for k in final_output_dict:
@@ -108,13 +108,10 @@ try:
 except OSError:
     pass
 fout = open("output.txt", 'w')
-#with open("output.txt") as f:
-#    output_list=f.readlines()
 
 output_list=[]
 len_output_list=len(output_list)
 print("final output dict is:" + str(final_output_dict))
-#while len(final_output_dict)>len_output_list:
 print("length final output dict is: " +str(len(final_output_dict)))
 for i in range(len(list_distance_compare)):
     for k in final_output_dict:
@@ -128,9 +125,6 @@ for i in range(len(list_distance_compare)):
             #print(final_output_dict[k]['Distance'])
             fout.write(output_string)
             list_distance_compare.remove(max(list_distance_compare))
-            #with open("output.txt") as f:
-                #output_list=f.readlines()
-                #len_output_list=len(output_list)
             break
             #print(list_distance_compare)
         elif final_output_dict[k]['Distance']==0 and len(list_distance_compare)==1:
