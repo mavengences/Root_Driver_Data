@@ -21,9 +21,8 @@ with open("input.txt") as f:
 ```	
 
 Once the input file is loaded line by line into a python list, we will iterate over that list to determine whether or not a certain
-record is a "Driver" record or a "Trip" record that corresponds to the driver. In order to do this, we will parse each line within the input list to determine
-whether or not the first record within each line is "Driver" or "Trip". To do the parsing, I used the python split function which turns an input string into a list delimieted by
-whatever i marked in the (' ') in this case a space. Then I call the first object in the list to check for Driver or Trip. The "Assert" statement below checks to ensure
+record is a "Driver" record or a "Trip". In order to do this, we will parse each line within the input list to determine
+whether or not the first record within each line is "Driver" or "Trip". To do the parsing, I used the python split function which turns an input string into a list delimieted by (' '). Then I call the first object in the list to check for Driver or Trip. The "Assert" statement below checks to ensure
 that the input list is not empty. This test case is a good safety precaution that will cause the script to fail if the input is empty. 
 
 ```
@@ -49,7 +48,7 @@ After scanning the file to determine drivers vs trips, I parse each line accordi
 compared to "driver" values. I will also create a hash-map (python dictionary-list) where each driver name is the primary key. Under each primary key,
 There will be python lists corresponding to the number of trips that they have taken. The Driver parse function parses the
 driver row and returns name while the trip parse function will parse the trip rows and append data to the hash map called "int_output_dict".
-Assert statements with corresponding test cases are used after every function to ensure that the code is running as expected.  
+Assert statements with corresponding test cases are used after every function to ensure that the code is running as expected. I chose to use a python dictionary for the overall data structure because dictionaries are called via name such as "Bob" instead of number ex [0]. That way, If I want to see Bob's trip data, I can call ["bob"]["trip data"] instead of creating a for loop and searching over the entire list [0-3] for the name "bob". That being said, both lists and dictionaries have their advantages/disadvantages. The disadvantage for using dictionaries was that final sorting procedures would be difficult since python does not have a native library to sort dictionaries.  
 
 ```
 def driver_parse(driver_string):
@@ -101,8 +100,11 @@ test_string_gen_dict={'Dan': {'Distance': 39, 'MPH': 47}, 'Alex': {'Distance': 4
 ```
 
 The code below will iterate over the hash map generated in the above statement and aggregate the trip data to determine MPH and total distance traveled
-It utilizes a lot of python existing list summation operations as well as basic division and json list search criteria. Generates a final JSON output 
+It utilizes a lot of python existing list summation operations as well as basic division and json list search criteria. It generates a final JSON output 
 hash-map where each user (Dan, Bob and Alex) have their MPH and distance aggregated into single numbers. 
+
+ex output: 
+{'Dan': {'Distance': 39, 'MPH': 47}, 'Alex': {'Distance': 42, 'MPH': 34}, 'Bob': {'Distance': 0, 'MPH': 0}}
 
     
 ```
