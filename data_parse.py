@@ -136,8 +136,7 @@ for i in range(len(list_distance_compare)):
         elif final_output_dict[k]['Distance']==0 and len(list_distance_compare)==1:
             fout.write(output_string)
             break
-                    #print(output_list)
-                #print(list_distance_compare)
+
 
     
         
@@ -146,6 +145,7 @@ print('\n')
 print('\n')
 print('\n')
 print(final_output_dict)
+
 
 assert final_output_dict['Dan']['Distance']==39
 assert final_output_dict['Dan']['MPH']==47
@@ -156,4 +156,10 @@ assert final_output_dict['Bob']['MPH']==0
 
 os.startfile("output.txt")
 
-assert len(final_output_dict)==len(output_list)
+with open("output.txt") as f:
+    output_list1=f.readlines()
+print(output_list1)
+
+print("len final output dict is:"+str(len(final_output_dict)))
+print("len final output list is:"+str(len(output_list1)))
+assert len(final_output_dict)==len(output_list1)
