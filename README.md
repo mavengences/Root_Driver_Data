@@ -192,10 +192,7 @@ for i in range(len(list_distance_compare)):
 fout.close()
  
 ```
-The below code contains test assertions to ensure that the number of rows in the final output report is the same as the number
-or rows in the final hash map above
 
-``` 
 The below code will open the final output report and print some important hash maps used in the creation process just for reference
 
 
