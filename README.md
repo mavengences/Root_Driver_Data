@@ -101,7 +101,7 @@ test_string_gen_dict={'Dan': {'Distance': 39, 'MPH': 47}, 'Alex': {'Distance': 4
 
 The code below will iterate over the hash map generated in the above statement and aggregate the trip data to determine MPH and total distance traveled.
 It utilizes a lot of python existing list summation operations as well as basic division and json list search criteria. It generates a final JSON output 
-hash-map where each user (Dan, Bob and Alex) have their MPH and distance aggregated into single numbers. 
+hash-map where each user (Dan, Bob and Alex) has his MPH and distance aggregated into single numbers. 
 
 ex output: 
 {'Dan': {'Distance': 39, 'MPH': 47}, 'Alex': {'Distance': 42, 'MPH': 34}, 'Bob': {'Distance': 0, 'MPH': 0}}
@@ -158,6 +158,7 @@ order to accomplish the sorting, it will generate the output string, check to se
 to the maximum distance generated from the list above and then write it to the file. It will iterate over the length of the hash map
 so that the number of lines in the final output is the same as the number of users in the output JSON hash map. 
 
+```
 output_list=[]
 
 try:
