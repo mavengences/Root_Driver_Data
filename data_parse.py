@@ -125,19 +125,19 @@ for i in range(len(list_distance_compare)):
             #print(output_string)
         #print(len(list_distance_compare))
         if final_output_dict[k]['Distance']==max(list_distance_compare):
-            print(final_output_dict[k]['Distance'])
+            #print(final_output_dict[k]['Distance'])
             fout.write(output_string)
             list_distance_compare.remove(max(list_distance_compare))
-            with open("output.txt") as f:
-                output_list=f.readlines()
-                len_output_list=len(output_list)
-                break
+            #with open("output.txt") as f:
+                #output_list=f.readlines()
+                #len_output_list=len(output_list)
+            break
             #print(list_distance_compare)
         elif final_output_dict[k]['Distance']==0 and len(list_distance_compare)==1:
             fout.write(output_string)
             break
 
-
+fout.close()
     
         
 print(int_output_dict)
@@ -156,8 +156,8 @@ assert final_output_dict['Bob']['MPH']==0
 
 os.startfile("output.txt")
 
-with open("output.txt") as f:
-    output_list1=f.readlines()
+with open("output.txt") as fout1:
+    output_list1=fout1.readlines()
 print(output_list1)
 
 print("len final output dict is:"+str(len(final_output_dict)))
