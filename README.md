@@ -209,7 +209,7 @@ os.startfile("output.txt")
 ```
 
 The below code contains test assertions to ensure that the number of rows in the final output report is the same as the number
-or rows in the final hash map above
+of rows in the final hash map above
 
 ``` 
 
