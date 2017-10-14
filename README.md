@@ -71,7 +71,7 @@ assert hours_calculator("7:45")==7.75
 assert hours_calculator("23:30")==23.5
 
 ```
-The trip parse function below will parse the trip data and append to the corresponding JSON hash maps created above
+The trip parse function below will parse the trip data and append to the corresponding JSON hash maps created above. It will also call the "hours Calculator" function to help with time/trip length calculations. 
 ```
 
 def trip_parse(trip_string, output_dict):
