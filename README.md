@@ -99,7 +99,7 @@ assert trip_parse("Trip Clara 23:00 1:15 42.0",test_output_dict)["Clara"]["Trip 
 test_string_gen_dict={'Dan': {'Distance': 39, 'MPH': 47}, 'Alex': {'Distance': 42, 'MPH': 34}, 'Bob': {'Distance': 0, 'MPH': 0}}
 ```
 
-The code below will iterate over the hash map generated in the above statement and aggregate the trip data to determine MPH and total distance traveled
+The code below will iterate over the hash map generated in the above statement and aggregate the trip data to determine MPH and total distance traveled.
 It utilizes a lot of python existing list summation operations as well as basic division and json list search criteria. It generates a final JSON output 
 hash-map where each user (Dan, Bob and Alex) have their MPH and distance aggregated into single numbers. 
 
