@@ -9,7 +9,6 @@ Written in python 3.6
 
 
 import os
-from collections import OrderedDict
 
 def driver_parse(driver_string):
     name=driver_string.split(' ')[1].split('\n')[0]
@@ -37,18 +36,24 @@ def trip_parse(trip_string, output_dict):
         trip_time=round(24-trip_start+trip_end,2)
     else:
         trip_time=trip_time_test
-    output_dict[trip_name]['Distance'].append(trip_distance)
-    output_dict[trip_name]['Trip Time'].append(trip_time)
+    Miles_Per_Hour=int(round(trip_distance/trip_time))
+    #print("Trip Time is: "+str(trip_time))
+    #print("Trip Test Time is: "+str(trip_time_test))
+    #print("Miles Per Hour is: "+str(Miles_Per_Hour))
+    #print("Distance is: "+str(trip_distance))
+    if Miles_Per_Hour>=5 and Miles_Per_Hour<=100:
+        output_dict[trip_name]['Distance'].append(trip_distance)
+        output_dict[trip_name]['Trip Time'].append(trip_time)
     return output_dict
 	
-test_output_dict={'Dan': {'Distance': [], 'Trip Time': []}, 'Alex': {'Distance': [], 'Trip Time': []}, 'Bob': {'Distance': [], 'Trip Time': []}, 'Clara': {'Distance': [], 'Trip Time': []}}
+test_output_dict={'Dan': {'Distance': [], 'Trip Time': []}, 'Alex': {'Distance': [], 'Trip Time': []}, 'Bob': {'Distance': [], 'Trip Time': []}, 'Clara': {'Distance': [], 'Trip Time': []}, 'Dorien': {'Distance': [], 'Trip Time': []}}
 #print(trip_parse("Trip Dan 07:15 07:45 17.3",test_output_dict)["Dan"]["Trip Time"][0])
 #print(trip_parse("Trip Clara 23:01 1:16 42.0",test_output_dict)["Clara"]["Trip Time"][0])
 assert trip_parse("Trip Dan 07:15 07:45 17.3",test_output_dict)["Dan"]["Trip Time"][0]==0.5
 assert trip_parse("Trip Alex 12:01 13:16 42.0",test_output_dict)["Alex"]["Trip Time"][0]==1.25
 assert trip_parse("Trip Clara 23:00 1:15 42.0",test_output_dict)["Clara"]["Trip Time"][0]==2.25
-
-test_string_gen_dict={'Dan': {'Distance': 39, 'MPH': 47}, 'Alex': {'Distance': 42, 'MPH': 34}, 'Bob': {'Distance': 0, 'MPH': 0}}
+assert trip_parse("Trip Dorien 23:00 23:15 42.0",test_output_dict)["Dorien"]["Trip Time"]==[]
+assert trip_parse("Trip Bob 22:00 23:15 0.5",test_output_dict)["Dorien"]["Trip Time"]==[]
 
 
 """
