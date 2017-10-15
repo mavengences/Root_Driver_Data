@@ -21,7 +21,7 @@ with open("input.txt") as f:
 ```	
 
 Once the input file is loaded line by line into a python list, we will iterate over that list to determine whether or not a certain
-record is a "Driver" record or a "Trip". In order to do this, we will parse each line within the input list to determine
+record is a "Driver" or a "Trip". In order to do this, we will parse each line within the input list to determine
 whether or not the first record within each line is "Driver" or "Trip". To do the parsing, I used the python split function which turns an input string into a list delimieted by (' '). Then I call the first object in the list to check for Driver or Trip. The "Assert" statement below checks to ensure
 that the input list is not empty. This test case is a good safety precaution that will cause the script to fail if the input is empty. 
 
@@ -71,7 +71,7 @@ assert hours_calculator("7:45")==7.75
 assert hours_calculator("23:30")==23.5
 
 ```
-The trip parse function below will parse the trip data and append to the corresponding JSON hash maps created above. The function will filter out trips which where speeds were less than 5 mph or greator than 100 mph. The "hours Calculator" function above is also called to help with time/trip length calculations. Assertions include multiple test cases that check for different scenarios with some test cases checking for situations where speeds are less than 5mph or greator than 100mph. 
+The trip parse function below will parse the trip data and append to the corresponding JSON hash maps created above. The function will filter out trips which where speeds were less than 5 mph or greator than 100 mph. Assertions/Test Cases include multiple test cases that check for different scenarios with some test cases checking for situations where speeds are less than 5mph or greator than 100mph. 
 ```
 
 def trip_parse(trip_string, output_dict):
