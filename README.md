@@ -71,7 +71,7 @@ assert hours_calculator("7:45")==7.75
 assert hours_calculator("23:30")==23.5
 
 ```
-The trip parse function below will parse the trip data and append to the corresponding JSON hash maps created above. It will also call the "hours Calculator" function to help with time/trip length calculations. 
+The trip parse function below will parse the trip data and append to the corresponding JSON hash maps created above. The function will filter out trips which where speeds were less than 5 mph or greator than 100 mph. The "hours Calculator" function above is also called to help with time/trip length calculations. Assertions include multiple test cases that check for different scenarios with some test cases checking for situations where speeds are less than 5mph or greator than 100mph. 
 ```
 
 def trip_parse(trip_string, output_dict):
@@ -101,7 +101,6 @@ test_output_dict={'Dan': {'Distance': [], 'Trip Time': []}, 'Alex': {'Distance':
 assert trip_parse("Trip Dan 07:15 07:45 17.3",test_output_dict)["Dan"]["Trip Time"][0]==0.5
 assert trip_parse("Trip Alex 12:01 13:16 42.0",test_output_dict)["Alex"]["Trip Time"][0]==1.25
 assert trip_parse("Trip Clara 23:00 1:15 42.0",test_output_dict)["Clara"]["Trip Time"][0]==2.25
-#pytest.warns("passed test case >100MPH", func, *args, **kwargs)
 assert trip_parse("Trip Dorien 23:00 23:15 42.0",test_output_dict)["Dorien"]["Trip Time"]==[]
 assert trip_parse("Trip Bob 22:00 23:15 0.5",test_output_dict)["Dorien"]["Trip Time"]==[]
 ```
@@ -109,6 +108,9 @@ assert trip_parse("Trip Bob 22:00 23:15 0.5",test_output_dict)["Dorien"]["Trip T
 The code below will iterate over the hash map generated in the above statement and aggregate the trip data to determine MPH and total distance traveled.
 It utilizes a lot of python existing list summation operations as well as basic division and json list search criteria. It generates a final JSON output 
 hash-map where each user (Dan, Bob and Alex) has his MPH and distance aggregated into single numbers. 
+
+ex input:
+{'Dan': {'Distance': [17.3, 21.8], 'Trip Time': [0.5, 0.33333333333333304]}, 'Alex': {'Distance': [42.0], 'Trip Time': [1.25]}, 'Bob': {'Distance': [], 'Trip Time': []}}
 
 ex output: 
 {'Dan': {'Distance': 39, 'MPH': 47}, 'Alex': {'Distance': 42, 'MPH': 34}, 'Bob': {'Distance': 0, 'MPH': 0}}
