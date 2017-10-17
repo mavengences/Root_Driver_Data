@@ -114,9 +114,29 @@ except OSError:
     pass
 fout = open("output.txt", 'w')
 
+
+
+assert final_output_dict['Dan']['Distance']==39
+assert final_output_dict['Dan']['MPH']==47
+assert final_output_dict['Alex']['Distance']==42
+assert final_output_dict['Alex']['MPH']==34
+assert final_output_dict['Bob']['Distance']==0
+assert final_output_dict['Bob']['MPH']==0
+
+final_output_report_dict=final_output_dict
+
+
+len_final_output_dict=len(final_output_dict)
+
+
+print("Intermediate output dictionary is:"+str(int_output_dict))
+print("\n")
+print("Final output dictionary is:"+str(final_output_report_dict))
+print("\n")
+
 output_list=[]
 len_output_list=len(output_list)
-print("final output dict is:" + str(final_output_dict))
+#print("final output dict is:" + str(final_output_dict))
 print("length final output dict is: " +str(len(final_output_dict)))
 for i in range(len(list_distance_compare)):
     for k in final_output_dict:
@@ -130,6 +150,7 @@ for i in range(len(list_distance_compare)):
             #print(final_output_dict[k]['Distance'])
             fout.write(output_string)
             list_distance_compare.remove(max(list_distance_compare))
+            del final_output_dict[k]
             break
             #print(list_distance_compare)
         elif final_output_dict[k]['Distance']==0 and len(list_distance_compare)==1:
@@ -137,28 +158,13 @@ for i in range(len(list_distance_compare)):
             break
 
 fout.close()
-    
-        
-print(int_output_dict)
-print('\n')
-print('\n')
-print('\n')
-print(final_output_dict)
 
-
-assert final_output_dict['Dan']['Distance']==39
-assert final_output_dict['Dan']['MPH']==47
-assert final_output_dict['Alex']['Distance']==42
-assert final_output_dict['Alex']['MPH']==34
-assert final_output_dict['Bob']['Distance']==0
-assert final_output_dict['Bob']['MPH']==0
 
 os.startfile("output.txt")
 
 with open("output.txt") as fout1:
     output_list1=fout1.readlines()
-print(output_list1)
+#print(output_list1)
 
-print("len final output dict is:"+str(len(final_output_dict)))
 print("len final output list is:"+str(len(output_list1)))
-assert len(final_output_dict)==len(output_list1)
+assert len_final_output_dict==len(output_list1)
