@@ -99,6 +99,19 @@ for k in int_output_dict:
         final_output_dict[k]['MPH']=0
         
 assert len(final_output_dict)>0
+assert final_output_dict['Dan']['Distance']==39
+assert final_output_dict['Dan']['MPH']==47
+assert final_output_dict['Alex']['Distance']==42
+assert final_output_dict['Alex']['MPH']==34
+assert final_output_dict['Bob']['Distance']==0
+assert final_output_dict['Bob']['MPH']==0
+
+len_final_output_dict=len(final_output_dict)
+
+print("Intermediate output dictionary is:"+str(int_output_dict))
+print("\n")
+print("Final output dictionary is:"+str(final_output_dict))
+print("\n")
 
 list_distance_compare=[]
 for k in final_output_dict:
@@ -113,26 +126,6 @@ try:
 except OSError:
     pass
 fout = open("output.txt", 'w')
-
-
-
-assert final_output_dict['Dan']['Distance']==39
-assert final_output_dict['Dan']['MPH']==47
-assert final_output_dict['Alex']['Distance']==42
-assert final_output_dict['Alex']['MPH']==34
-assert final_output_dict['Bob']['Distance']==0
-assert final_output_dict['Bob']['MPH']==0
-
-final_output_report_dict=final_output_dict
-
-
-len_final_output_dict=len(final_output_dict)
-
-
-print("Intermediate output dictionary is:"+str(int_output_dict))
-print("\n")
-print("Final output dictionary is:"+str(final_output_report_dict))
-print("\n")
 
 output_list=[]
 len_output_list=len(output_list)

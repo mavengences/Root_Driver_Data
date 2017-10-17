@@ -145,6 +145,13 @@ assert final_output_dict['Alex']['MPH']==34
 assert final_output_dict['Bob']['Distance']==0
 assert final_output_dict['Bob']['MPH']==0
 
+len_final_output_dict=len(final_output_dict)
+
+print("Intermediate output dictionary is:"+str(int_output_dict))
+print("\n")
+print("Final output dictionary is:"+str(final_output_dict))
+print("\n")
+
 ```
 
 The code below will create a new list used for sorting the final output dicitonary based on distance. The new list will contain all 
@@ -178,7 +185,7 @@ fout = open("output.txt", 'w')
 
 output_list=[]
 len_output_list=len(output_list)
-print("final output dict is:" + str(final_output_dict))
+#print("final output dict is:" + str(final_output_dict))
 print("length final output dict is: " +str(len(final_output_dict)))
 for i in range(len(list_distance_compare)):
     for k in final_output_dict:
@@ -192,6 +199,7 @@ for i in range(len(list_distance_compare)):
             #print(final_output_dict[k]['Distance'])
             fout.write(output_string)
             list_distance_compare.remove(max(list_distance_compare))
+            del final_output_dict[k]
             break
             #print(list_distance_compare)
         elif final_output_dict[k]['Distance']==0 and len(list_distance_compare)==1:
@@ -202,16 +210,10 @@ fout.close()
  
 ```
 
-The below code will open the final output report and print some important hash maps used in the creation process just for reference
+The below code will open the final output report
 
 
 ``` 
-print(int_output_dict)
-print('\n')
-print('\n')
-print('\n')
-print(final_output_dict)
-
 
 os.startfile("output.txt")
 
@@ -224,10 +226,10 @@ of rows in the final hash map above
 
 with open("output.txt") as fout1:
     output_list1=fout1.readlines()
-print(output_list1)
-print("len final output dict is:"+str(len(final_output_dict)))
+#print(output_list1)
+
 print("len final output list is:"+str(len(output_list1)))
-assert len(final_output_dict)==len(output_list1)
+assert len_final_output_dict==len(output_list1)
 ```
 
 FIN
