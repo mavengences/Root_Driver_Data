@@ -3,6 +3,8 @@ import subprocess
 import os
 import pandas as pd
 import re
+from mpl_toolkits.basemap import Basemap
+import matplotlib.pyplot as plt
 
 def grib_to_dataframe(grib_file_name):
     output_txt=subprocess.check_output(['grib_get_data',grib_file_name])
@@ -29,3 +31,8 @@ def grib_to_dataframe(grib_file_name):
 
 grib_df=grib_to_dataframe('A_HHXK50ECMF121200_C_ECMF_20190412120000_72h_gh_500hPa_global_0p5deg_grib2.bin')
 grib_df.head()
+
+m=Basemap(projection='mill')
+m.drawcoastlines()
+plt.title('Basemap Tutorial')
+plt.show()
