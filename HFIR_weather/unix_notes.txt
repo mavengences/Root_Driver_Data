@@ -1,0 +1,13 @@
+source /root/ecmwf/bin/activate
+
+
+
+Old Password
+A7e*]S+787T9rBJv
+
+New Password
+Wintar19
+
+
+
+ cmake -DCMAKE_INSTALL_PREFIX=/root/custom_builds/eccodes ../eccodes-2.12.0-Source
